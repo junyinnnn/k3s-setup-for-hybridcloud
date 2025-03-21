@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 2  # Run 2 NGINX pods for redundancy
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80  # NGINX listens on port 80 inside the container
+      nodeSelector:  # Add this section
+        kubernetes.io/hostname: k3s-worker-1  # Match the worker node's hostname
+
