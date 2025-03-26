@@ -1,0 +1,23 @@
+version: '3'
+services:
+  tailscale:
+    image: tailscale/tailscale
+    privileged: true
+    network_mode: "host"
+    volumes:
+      - /var/lib/tailscale:/var/lib/tailscale
+    environment:
+      - TS_AUTHKEY=${TS_AUTHKEY}               # Authentication key for automatic login
+      - TS_ROUTES=${TS_ROUTES}                 # Advertise subnet routes (e.g., 192.168.1.0/24)
+      - TS_EXTRA_ARGS=${TS_EXTRA_ARGS}         # Additional flags (e.g., "--ssh" for Tailscale SSH)
+      - TS_HOSTNAME=${TS_HOSTNAME}             # Custom hostname for Tailscale
+      - TS_STATE_DIR=/var/lib/tailscale        # Persistent state storage
+      - TS_ACCEPT_DNS=${TS_ACCEPT_DNS:-true}   # Use Tailscale's DNS (true/false)
+      - TS_EXIT_NODE=${TS_EXIT_NODE:-false}    # Set this machine as an exit node
+      - TS_EXIT_NODE_ALLOW_LAN=${TS_EXIT_NODE_ALLOW_LAN:-false}  # Allow local LAN traffic when using this machine as an exit node
+      - TS_SSH=${TS_SSH:-false}                # Enable Tailscale SSH (true/false)
+      - TS_NETFILTER_MODE=${TS_NETFILTER_MODE:-auto}  # Netfilter mode (on/off/auto)
+    command: tailscaled
+
+networks:
+  tailscale-net:
