@@ -15,6 +15,8 @@ curl -sfL https://get.k3s.io | sh -s - server \
     --node-ip <PRIVATE_IP> \
     --node-external-ip <YOUR_PUBLIC_IP>
 sudo cat /var/lib/rancher/k3s/server/node-token
+export K3S_TOKEN=$(sudo cat /var/lib/rancher/k3s/server/node-token)
+echo $K3S_TOKEN
 ```
 
 ---
