@@ -10,10 +10,10 @@ Run the following command on the AWS master node:
 ```bash
 curl -sfL https://get.k3s.io | sh -s - server \
     --cluster-init \
-    --advertise-address 100.114.208.67 \
-    --tls-san 100.114.208.67 \
-    --node-ip 100.114.208.67 \
-    --node-external-ip 100.114.208.67
+    --advertise-address <MASTER_PRIVATE_IP> \
+    --tls-san <MASTER_PRIVATE_IP> \
+    --node-ip <MASTER_PRIVATE_IP> \
+    --node-external-ip <MASTER_PUBLIC_IP>
 ```
 
 ---
@@ -22,11 +22,11 @@ curl -sfL https://get.k3s.io | sh -s - server \
 Run this command on the homelab worker node:
 
 ```bash
-curl -sfL https://get.k3s.io | K3S_URL=https://100.114.208.67:6443 \
-    K3S_TOKEN=K10fea86508552f32dc3e34c7a223bb4b35e30994d0167b4bed8b82a47cb52bc6c9::server:7c865c764247ba11bb359da87908f6ba \
+curl -sfL https://get.k3s.io | K3S_URL=https://<MASTER_PRIVATE_IP>:6443 \
+    K3S_TOKEN=<K3S_CLUSTER_TOKEN> \
     sh -s - agent \
-    --node-ip 100.87.157.110 \
-    --node-external-ip 100.87.157.110
+    --node-ip <WORKER_PRIVATE_IP> \
+    --node-external-ip <WORKER_PUBLIC_IP>
 ```
 
 ---
@@ -47,7 +47,7 @@ server: https://127.0.0.1:6443
 To:
 
 ```yaml
-server: https://100.114.208.67:6443
+server: https://<MASTER_PRIVATE_IP>:6443
 ```
 
 ---
