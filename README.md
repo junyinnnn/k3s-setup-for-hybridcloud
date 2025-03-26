@@ -10,10 +10,12 @@ Run the following command on the AWS master node:
 ```bash
 curl -sfL https://get.k3s.io | sh -s - server \
     --cluster-init \
-    --advertise-address <YOUR_PUBLIC_IP> \
-    --tls-san <YOUR_PUBLIC_IP> \
-    --node-ip <PRIVATE_IP> \
-    --node-external-ip <YOUR_PUBLIC_IP>
+    --node-ip 100.114.208.67 \
+    --advertise-address 100.114.208.67 \
+    --tls-san 100.114.208.67 \
+    --flannel-iface tailscale0 \
+    --disable-cloud-controller
+
 sudo cat /var/lib/rancher/k3s/server/node-token
 export K3S_TOKEN=$(sudo cat /var/lib/rancher/k3s/server/node-token)
 echo $K3S_TOKEN
