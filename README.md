@@ -46,6 +46,7 @@ Verify the cluster status:
 sudo kubectl get nodes -o wide
 sudo kubectl describe node <Node_name>
 ```
+![image](https://github.com/user-attachments/assets/36bf5206-f34f-4190-be76-dba0febdc6ab)
 
 If everything is set up correctly, you should see your master and worker nodes in the cluster.
 
