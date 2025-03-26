@@ -14,7 +14,7 @@ curl -sfL https://get.k3s.io | sh -s - server \
     --tls-san <YOUR_PUBLIC_IP> \
     --node-ip <PRIVATE_IP> \
     --node-external-ip <YOUR_PUBLIC_IP>
-sudo nano /etc/systemd/system/k3s.service
+sudo cat /var/lib/rancher/k3s/server/node-token
 ```
 
 ---
