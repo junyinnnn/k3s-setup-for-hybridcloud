@@ -10,10 +10,11 @@ Run the following command on the AWS master node:
 ```bash
 curl -sfL https://get.k3s.io | sh -s - server \
     --cluster-init \
-    --advertise-address <MASTER_PRIVATE_IP> \
-    --tls-san <MASTER_PRIVATE_IP> \
-    --node-ip <MASTER_PRIVATE_IP> \
-    --node-external-ip <MASTER_PUBLIC_IP>
+    --advertise-address <YOUR_PUBLIC_IP> \
+    --tls-san <YOUR_PUBLIC_IP> \
+    --node-ip <PRIVATE_IP> \
+    --node-external-ip <YOUR_PUBLIC_IP>
+sudo nano /etc/systemd/system/k3s.service
 ```
 
 ---
