@@ -109,7 +109,10 @@ Annotations:        flannel.alpha.coreos.com/backend-data: {"VNI":1,"VtepMAC":"4
 ```bash
 helm install ingress-nginx ingress-nginx/ingress-nginx   --namespace ingress-nginx   --create-namespace   --set controller.service.type=ClusterIP   --set controller.service.externalIPs[0]=100.114.208.67   --set controller.ingressClassResource.default=true
 ```
-- No extra setup is needed, default is fine at this stage.
+```bash
+sudo kubectl get svc -n ingress-nginx
+```
+![image](https://github.com/user-attachments/assets/721f6308-0bc7-4f78-9c09-0383f811bee9)
 
 ---
 ### **5. Deployment Test**
