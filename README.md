@@ -1,7 +1,12 @@
-# K3s Setup for Multi-Cloud
+# K3s Setup for Hybrid-Cloud
 
 This project provides a tutorial on how to initialize a **Linux K3s setup** in a **multi-cloud or hybrid environment**.
-
+---
+## **0. Setting Up Tailscale Using Docker**
+```bash
+cd ts
+docker-compose up -d
+```
 ---
 
 ## **1. Setting Up the AWS Master Node**
