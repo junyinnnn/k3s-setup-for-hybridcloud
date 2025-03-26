@@ -15,12 +15,11 @@ curl -sfL https://get.k3s.io | sh -s - server \
     --tls-san 100.114.208.67 \
     --flannel-iface tailscale0 \
     --disable-cloud-controller
-
-sudo cat /var/lib/rancher/k3s/server/node-token
-export K3S_TOKEN=$(sudo cat /var/lib/rancher/k3s/server/node-token)
-echo $K3S_TOKEN
 ```
-
+Get k3s node token for authentication
+```bash
+sudo cat /var/lib/rancher/k3s/server/node-token
+```
 ---
 
 ## **2. Setting Up the Homelab Worker Node**
@@ -57,7 +56,8 @@ If everything is set up correctly, you should see your master and worker nodes i
 ```bash
 helm install ingress-nginx ingress-nginx/ingress-nginx   --namespace ingress-nginx   --create-namespace   --set controller.service.type=ClusterIP   --set controller.service.externalIPs[0]=100.114.208.67   --set controller.ingressClassResource.default=true
 ```
-**No extra setup is needed, default is fine at this stage.
+- No extra setup is needed, default is fine at this stage.
+
 ---
 ### **5. Deployment Test**
 ```bash
