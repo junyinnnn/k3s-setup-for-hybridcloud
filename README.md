@@ -150,5 +150,14 @@ X-Scheme: http
 ![image](https://github.com/user-attachments/assets/a1211eef-9e0c-43b1-8110-984befdffbeb)
 
 ---
+### **6. Nginx-proxy**
+Although we have successfully setup k3s cluster in tailscale vpn, nginx ingress controller cannot direct expose port to the host machine(kubernetes is in tailscale private network)
+We can use docker to forward the request to the vpn
+```bash
+docker run -d --name nginx-proxy \
+  -p 80:80 \
+  -v $(pwd)/nginx.conf:/etc/nginx/nginx.conf:ro \
+  nginx:alpine
+```
 
 **🚀 Enjoy your multi-cloud K3s setup!**
