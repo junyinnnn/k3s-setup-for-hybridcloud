@@ -107,7 +107,13 @@ Annotations:        flannel.alpha.coreos.com/backend-data: {"VNI":1,"VtepMAC":"4
 ### **4. Nginx Ingress Controller**
 - Install **Helm** and deploy workloads.
 ```bash
-helm install ingress-nginx ingress-nginx/ingress-nginx   --namespace ingress-nginx   --create-namespace   --set controller.service.type=ClusterIP   --set controller.service.externalIPs[0]=100.114.208.67   --set controller.ingressClassResource.default=true
+helm install ingress-nginx ingress-nginx/ingress-nginx \
+  --namespace ingress-nginx \
+  --create-namespace \
+  --set controller.service.type=ClusterIP \
+  --set controller.service.externalIPs[0]=100.114.208.67 \
+  --set controller.ingressClassResource.default=true \
+  --set controller.config.use-forwarded-headers=true
 ```
 ```bash
 sudo kubectl get svc -n ingress-nginx
