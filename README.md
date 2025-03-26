@@ -40,11 +40,11 @@ curl -sfL https://get.k3s.io | \
 ---
 
 ### **3. Verification Steps**
-After making the changes, apply them and verify the cluster status:
+Verify the cluster status:
 
 ```bash
-export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
-kubectl get nodes -o wide
+sudo kubectl get nodes -o wide
+sudo kubectl describe node <Node_name>
 ```
 
 If everything is set up correctly, you should see your master and worker nodes in the cluster.
