@@ -40,28 +40,7 @@ curl -sfL https://get.k3s.io | \
 
 ---
 
-## **3. Configuring K3s on the AWS Master Node**
-After installation, modify the **kubeconfig** file on the AWS master node:
-
-```bash
-sudo nano /etc/rancher/k3s/k3s.yaml
-```
-
-### **Modify the `server` Field**
-Change:
-
-```yaml
-server: https://127.0.0.1:6443
-```
-To:
-
-```yaml
-server: https://<MASTER_PRIVATE_IP>:6443
-```
-
----
-
-### **Verification Steps**
+### **3. Verification Steps**
 After making the changes, apply them and verify the cluster status:
 
 ```bash
@@ -73,11 +52,17 @@ If everything is set up correctly, you should see your master and worker nodes i
 
 ---
 
-### **Next Steps**
+### **4. Nginx Ingress Controller**
 - Install **Helm** and deploy workloads.
-- Set up **Ingress NGINX** for traffic routing.
-- Configure **Persistent Storage** if needed.
-
+```bash
+helm install ingress-nginx ingress-nginx/ingress-nginx   --namespace ingress-nginx   --create-namespace   --set controller.service.type=ClusterIP   --set controller.service.externalIPs[0]=100.114.208.67   --set controller.ingressClassResource.default=true
+```
+**No extra setup is needed, default is fine at this stage.
+---
+### **5. Deployment Test**
+```bash
+sudo kubectl apply -f test.yaml
+```
 ---
 
 **🚀 Enjoy your multi-cloud K3s setup!**
