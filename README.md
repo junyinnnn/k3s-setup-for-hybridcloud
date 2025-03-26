@@ -27,11 +27,15 @@ echo $K3S_TOKEN
 Run this command on the homelab worker node:
 
 ```bash
-curl -sfL https://get.k3s.io | K3S_URL=https://<MASTER_PRIVATE_IP>:6443 \
-    K3S_TOKEN=<K3S_CLUSTER_TOKEN> \
-    sh -s - agent \
-    --node-ip <WORKER_PRIVATE_IP> \
-    --node-external-ip <WORKER_PUBLIC_IP>
+curl -sfL https://get.k3s.io | \
+  K3S_URL=https://100.114.208.67:6443 \
+  K3S_TOKEN=K10cfd68a50c9dab7890a9ab622b95b6c7cdfb1b9c3759362555332a1ac96f87e97::server:098618ccd5a0d954584fbe17ec3ec99b \
+  sh -s - agent \
+    --node-ip 100.87.157.110 \
+    --node-external-ip 100.87.157.110 \
+    --flannel-iface tailscale0 \
+    --kubelet-arg "node-ip=100.87.157.110"
+
 ```
 
 ---
