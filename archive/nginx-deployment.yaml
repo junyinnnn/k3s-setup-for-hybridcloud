@@ -19,6 +19,4 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80  # NGINX listens on port 80 inside the container
-      nodeSelector:  # Add this section
-        kubernetes.io/hostname: k3s-worker-1  # Match the worker node's hostname
 
