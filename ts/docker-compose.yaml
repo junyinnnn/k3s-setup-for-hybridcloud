@@ -4,6 +4,7 @@ services:
     image: tailscale/tailscale
     privileged: true
     network_mode: "host"
+    restart: always
     volumes:
       - /var/lib/tailscale:/var/lib/tailscale
     environment:
